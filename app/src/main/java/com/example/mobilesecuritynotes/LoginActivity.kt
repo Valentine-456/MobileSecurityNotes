@@ -20,14 +20,6 @@ class LoginActivity : AppCompatActivity() {
         this.passwordInput = findViewById<EditText>(R.id.etPassword)
 
         this.loginButton.setOnClickListener {
-//            Toast
-//                .makeText(
-//                    this@LoginActivity,
-//                    "Username: ${usernameInput.text}\nPassword: ${passwordInput.text}",
-//                    Toast.LENGTH_LONG
-//                )
-//                .show()
-
             val intent = Intent(this@LoginActivity, HomeActivity::class.java)
             startActivity(intent)
         }

@@ -1,15 +1,19 @@
-package com.example.mobilesecuritynotes
+package com.example.mobilesecuritynotes.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobilesecuritynotes.NoteActivity
+import com.example.mobilesecuritynotes.R
 import com.example.mobilesecuritynotes.database.notes.NotesEntity
+import java.text.DateFormat
+import java.util.*
 
 class MemoryNotesAdapter(private val context: Context, private val number: Int) :
     RecyclerView.Adapter<MemoryNotesAdapter.ViewHolder>() {
@@ -37,10 +41,17 @@ class MemoryNotesAdapter(private val context: Context, private val number: Int) 
         private val imageButton = itemView.findViewById<ImageButton>(R.id.imageButton)
         private var title = itemView.findViewById<TextView>(R.id.textView)
 
+        private var loc: Locale = Locale("en", "US")
+        private var dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, loc)
+
         fun bind(position: Int) {
-            this.title.text = notesList[position].updated_at
+            this.title.text = dateFormat.format(Date(notesList[position].updated_at))
+            this.imageButton.tag = notesList[position].note_id
+
             imageButton.setOnClickListener {
-                Log.i("ImageButton", "Hello")
+                val intent = Intent(context, NoteActivity::class.java)
+                intent.putExtra("noteItemId", this.imageButton.tag as Int)
+                context.startActivity(intent)
             }
         }
     }
