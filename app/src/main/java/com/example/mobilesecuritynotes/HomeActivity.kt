@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,11 +24,19 @@ class HomeActivity : AppCompatActivity() {
         this.rvNotes = findViewById(R.id.rvNotes)
         this.createButton = findViewById(R.id.createButton)
 
-        rvNotes.adapter = MemoryNotesAdapter(this, 15)
+        notesViewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
+
+        val adapter = MemoryNotesAdapter(this, 0)
+        rvNotes.adapter = adapter
         rvNotes.setHasFixedSize(true)
         rvNotes.layoutManager = GridLayoutManager(this, 2)
 
-        notesViewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
+        notesViewModel.data.observe(
+            this,
+            Observer { noteItem ->
+                adapter.setData(noteItem)
+            }
+        )
 
         createButton.setOnClickListener {
             this.addNote()
