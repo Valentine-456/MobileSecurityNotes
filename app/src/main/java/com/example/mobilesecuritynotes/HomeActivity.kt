@@ -40,14 +40,14 @@ class HomeActivity : AppCompatActivity() {
         )
 
         createButton.setOnClickListener {
-//            this.addNote()
+            // TODO addNote() finishes after the last modified note is returned
+            // TODO fix this problem in non-blocking way
+            this.notesViewModel.addNote()
+            Thread.sleep(100)
             val intent = Intent(this@HomeActivity, NoteActivity::class.java)
-//            intent.putExtra("noteItem", )
+            val newNoteItem = this.notesViewModel.getLastModifiedNote()
+            intent.putExtra("noteItemId", newNoteItem.note_id)
             startActivity(intent)
         }
-    }
-
-    private fun addNote() {
-        this.notesViewModel.addNote()
     }
 }

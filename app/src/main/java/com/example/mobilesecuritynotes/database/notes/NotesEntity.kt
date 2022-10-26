@@ -2,13 +2,14 @@ package com.example.mobilesecuritynotes.database.notes
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.util.*
 
 @Entity(tableName = "notes")
 data class NotesEntity(
     @PrimaryKey(autoGenerate = true)
     var note_id: Int = 0,
-    var title: String = "",
+    var title: String = "Some title",
     var updated_at: String = Date().toString(),
-    var content: String = ""
-)
+    var content: String = "Lorem ipsum dolor sit amen"
+) : Serializable

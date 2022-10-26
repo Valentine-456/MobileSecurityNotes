@@ -45,12 +45,12 @@ class MemoryNotesAdapter(private val context: Context, private val number: Int) 
         private var dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, loc)
 
         fun bind(position: Int) {
-            this.title.text = dateFormat.format(Date(notesList[position].updated_at))
-            this.imageButton.tag = notesList[position].note_id
+            this.title.text = notesList[position].note_id.toString()
+            this.imageButton.tag = notesList[position]
 
             imageButton.setOnClickListener {
                 val intent = Intent(context, NoteActivity::class.java)
-                intent.putExtra("noteItemId", this.imageButton.tag as Int)
+                intent.putExtra("noteItemId", notesList[position].note_id)
                 context.startActivity(intent)
             }
         }
