@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.mobilesecuritynotes.database.notes.NotesEntity
+import com.example.mobilesecuritynotes.utils.TimeFormatter
 import com.example.mobilesecuritynotes.viewmodels.NotesViewModel
-import java.text.SimpleDateFormat
 import java.util.*
 
 class NoteActivity : AppCompatActivity() {
@@ -21,9 +21,7 @@ class NoteActivity : AppCompatActivity() {
     private lateinit var deleteButton: Button
     private lateinit var saveButton: Button
 
-    private var loc: Locale = Locale("en", "US")
-    private var pattern = "MMM dd, yyyy hh:mm"
-    private var simpleDateFormat: SimpleDateFormat = SimpleDateFormat(pattern, loc)
+    private val formatter = TimeFormatter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +40,7 @@ class NoteActivity : AppCompatActivity() {
 
         noteContent.text = Editable.Factory.getInstance().newEditable(noteItem.content)
         noteTitleText.text = Editable.Factory.getInstance().newEditable(noteItem.title)
-        noteDateText.text = simpleDateFormat.format(Date(noteItem.updated_at))
+        noteDateText.text = formatter.getNoteDateText(noteItem.updated_at)
 
         deleteButton.setOnClickListener {
             notesViewModel.deleteNoteById(noteItem.note_id)

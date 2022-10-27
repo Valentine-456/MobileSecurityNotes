@@ -9,7 +9,7 @@ import java.util.*
 data class NotesEntity(
     @PrimaryKey(autoGenerate = true)
     var note_id: Int = 0,
-    var title: String = "Some title",
+    var title: String = "",
     var updated_at: String = Date().toString(),
-    var content: String = "Lorem ipsum dolor sit amen"
+    var content: String = ""
 ) : Serializable
