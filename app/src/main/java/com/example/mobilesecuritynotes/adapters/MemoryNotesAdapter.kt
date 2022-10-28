@@ -46,7 +46,7 @@ class MemoryNotesAdapter(private val context: Context, private val number: Int) 
         fun bind(position: Int) {
             this.title.text = notesList[position].title
             this.imageButton.tag = notesList[position]
-            this.date.text = formatter.beautifyDateText(Date(notesList[position].updated_at))
+            this.date.text = formatter.getNoteDateText(notesList[position].updated_at)
 
             imageButton.setOnClickListener {
                 val intent = Intent(context, NoteActivity::class.java)

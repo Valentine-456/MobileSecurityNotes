@@ -10,6 +10,6 @@ data class NotesEntity(
     @PrimaryKey(autoGenerate = true)
     var note_id: Int = 0,
     var title: String = "",
-    var updated_at: String = Date().toString(),
+    var updated_at: Long = Date().time,
     var content: String = ""
 ) : Serializable

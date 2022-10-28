@@ -51,7 +51,7 @@ class NoteActivity : AppCompatActivity() {
             val updatedNote = NotesEntity(
                 noteItem.note_id,
                 noteTitleText.text.toString(),
-                Date().toString(),
+                Date().time,
                 noteContent.text.toString()
             )
             notesViewModel.updateNote(updatedNote)
