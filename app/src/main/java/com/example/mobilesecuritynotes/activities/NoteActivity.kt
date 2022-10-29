@@ -1,4 +1,4 @@
-package com.example.mobilesecuritynotes
+package com.example.mobilesecuritynotes.activities
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.mobilesecuritynotes.R
 import com.example.mobilesecuritynotes.database.notes.NotesEntity
 import com.example.mobilesecuritynotes.utils.TimeFormatter
 import com.example.mobilesecuritynotes.viewmodels.NotesViewModel

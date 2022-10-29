@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etOldPassword"
         android:layout_width="800px"
         android:layout_height="48dp"
         android:hint="Password"

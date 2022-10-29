@@ -1,4 +1,4 @@
-package com.example.mobilesecuritynotes
+package com.example.mobilesecuritynotes.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobilesecuritynotes.R
 import com.example.mobilesecuritynotes.adapters.MemoryNotesAdapter
 import com.example.mobilesecuritynotes.viewmodels.NotesViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -40,8 +41,6 @@ class HomeActivity : AppCompatActivity() {
         )
 
         createButton.setOnClickListener {
-            // TODO addNote() finishes after the last modified note is returned
-            // TODO fix this problem in non-blocking way
             this.notesViewModel.addNote()
             Thread.sleep(100)
             val intent = Intent(this@HomeActivity, NoteActivity::class.java)
