@@ -23,4 +23,5 @@ object ToastMessages {
     val WRONG_PASSWORD = "Wrong password! Try again :)"
     val SUCCESSFUL_PASSWORD_CHANGE = "Your password was successfully changed:)"
     val REPEAT_PASSWORD_DOESNT_CORRESPEND = " Your new password and repeat password don't match :("
+    val PASSWORD_TOO_SHORT = "Your password must be at least 6 character long"
 }

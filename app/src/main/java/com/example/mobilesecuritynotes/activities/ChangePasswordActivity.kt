@@ -29,6 +29,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         this.changePasswordButton.setOnClickListener {
             val newPassword = this.newPasswordInput.text.toString()
 
+            if(!validateNewPassword(newPassword)) return@setOnClickListener
             if (!checkIfRepeatPasswordMatch(newPassword)) return@setOnClickListener
             if (!checkIfOldPasswordCorrect()) return@setOnClickListener
 
@@ -53,6 +54,14 @@ class ChangePasswordActivity : AppCompatActivity() {
                 showShortToast(this.applicationContext, ToastMessages.WRONG_PASSWORD)
                 return false
             }
+        }
+        return true
+    }
+
+    private fun validateNewPassword(newPassword: String): Boolean {
+        if(newPassword.length < 6) {
+            showShortToast(this.applicationContext, ToastMessages.PASSWORD_TOO_SHORT)
+            return false
         }
         return true
     }
