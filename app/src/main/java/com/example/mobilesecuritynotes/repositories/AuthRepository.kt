@@ -28,4 +28,16 @@ class AuthRepository(context: Context) {
         editor.putString("APP_PASSWORD", newPassword)
         editor.commit()
     }
+
+    fun getDBPassword(): String {
+        if(!this.sharedPreference.contains("DB_PASSWORD")) {
+            val editor = this.sharedPreference.edit()
+            editor.putString("DB_PASSWORD", this.randomCharSeq(16))
+            editor.commit()
+        }
+        return this.sharedPreference.getString("DB_PASSWORD", "")!!
+    }
+
+    private val chars = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+    private fun randomCharSeq(n: Int): String = List(n) { chars.random() }.joinToString("")
 }
