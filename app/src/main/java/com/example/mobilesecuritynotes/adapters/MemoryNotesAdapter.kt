@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobilesecuritynotes.activities.NoteActivity
 import com.example.mobilesecuritynotes.R
+import com.example.mobilesecuritynotes.activities.NoteActivity
 import com.example.mobilesecuritynotes.database.notes.NotesEntity
 import com.example.mobilesecuritynotes.utils.TimeFormatter
 import java.util.*

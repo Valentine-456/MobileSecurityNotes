@@ -2,6 +2,7 @@ package com.example.mobilesecuritynotes.activities
 
 import android.os.Bundle
 import android.text.Editable
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -25,6 +26,11 @@ class NoteActivity : AppCompatActivity() {
     private val formatter = TimeFormatter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note)
 
