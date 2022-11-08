@@ -3,6 +3,7 @@ package com.example.mobilesecuritynotes.repositories
 import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import com.password4j.Password
 
 class AuthRepository(context: Context) {
     private var masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
@@ -18,19 +19,21 @@ class AuthRepository(context: Context) {
         return this.sharedPreference.contains("APP_PASSWORD")
     }
 
-    fun checkPassword(probablePassword: String): Boolean {
+    fun checkPassword(probablePassword: CharSequence): Boolean {
         val currentPassword = this.sharedPreference.getString("APP_PASSWORD", "")
-        return currentPassword == probablePassword
+        return Password.check(probablePassword, currentPassword).withArgon2()
     }
 
-    fun setNewPassword(newPassword: String) {
+    fun setNewPassword(newPassword: CharSequence) {
+        val newPasswordHashed = Password.hash(newPassword).withArgon2()
+
         val editor = this.sharedPreference.edit()
-        editor.putString("APP_PASSWORD", newPassword)
+        editor.putString("APP_PASSWORD", newPasswordHashed.result)
         editor.commit()
     }
 
     fun getDBPassword(): String {
-        if(!this.sharedPreference.contains("DB_PASSWORD")) {
+        if (!this.sharedPreference.contains("DB_PASSWORD")) {
             val editor = this.sharedPreference.edit()
             editor.putString("DB_PASSWORD", this.randomCharSeq(16))
             editor.commit()

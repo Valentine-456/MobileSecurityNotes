@@ -26,8 +26,10 @@ abstract class DataBase : RoomDatabase() {
             this.authRepository = AuthRepository(context.applicationContext)
 
             synchronized(this) {
-                val passphrase = SQLiteDatabase.getBytes(this.authRepository.getDBPassword().toCharArray());
-                val factory = SupportFactory(passphrase);
+                val passphrase = SQLiteDatabase.getBytes(
+                    this.authRepository.getDBPassword().toCharArray()
+                )
+                val factory = SupportFactory(passphrase)
 
                 val builder = Room.databaseBuilder(
                     context.applicationContext,
