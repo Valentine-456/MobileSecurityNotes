@@ -24,4 +24,5 @@ object ToastMessages {
     val SUCCESSFUL_PASSWORD_CHANGE = "Your password was successfully changed:)"
     val REPEAT_PASSWORD_DOESNT_CORRESPEND = " Your new password and repeat password don't match :("
     val PASSWORD_TOO_SHORT = "Your password must be at least 6 character long"
+    val ENABLE_BIOMETRIC_FIRST = "To use this feature, add biometric unlock to your device"
 }
