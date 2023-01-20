@@ -3,6 +3,7 @@ package com.example.mobilesecuritynotes.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mobilesecuritynotes.adapters.MemoryNotesAdapter
 import com.example.mobilesecuritynotes.databinding.ActivityHomeBinding
 import com.example.mobilesecuritynotes.viewmodels.NotesViewModel
+import kotlin.math.roundToInt
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var notesViewModel: NotesViewModel
@@ -32,7 +34,10 @@ class HomeActivity : AppCompatActivity() {
         val adapter = MemoryNotesAdapter(this, 0)
         binding.RVNotes.adapter = adapter
         binding.RVNotes.setHasFixedSize(true)
-        binding.RVNotes.layoutManager = GridLayoutManager(this, 2)
+        val displayMetrics: DisplayMetrics = this.resources.displayMetrics
+        val dpWidth = displayMetrics.widthPixels / displayMetrics.density
+        val spanCount = (dpWidth / 200).roundToInt()
+        binding.RVNotes.layoutManager = GridLayoutManager(this, spanCount)
 
         notesViewModel.data.observe(
             this,
